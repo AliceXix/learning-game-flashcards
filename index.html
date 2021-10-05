@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css"/>
+
+</head>
+<body>
+
+
+    <div class="container-of-cards">
+    
+        <div class="card" id="cards">
+    
+            <div class="flipcard">
+                <h2 id="topic"></h2>
+                <ul>
+                    <li id="bullet1"></li>
+                    <li id="bullet2"></li>
+                    <li id="bullet3"></li>
+                </ul>
+            </div> <!--flipcard-->
+    
+            <div class="question">
+                <h3 id="question-asked"></h3>
+    
+                <img id="question-img" src="">
+    
+                <button id="answer1"></button>
+                <button id="answer2"></button>
+                <button id="answer3"></button>
+                <button id="answer4"></button>
+    
+                <br>
+    
+                <div class="container">
+                    <div class="model" id="models">
+    
+                        <div class="model-failed">
+    
+    
+                            <!-- Trigger/Open The Modal -->
+                            <button id="submit">Submit</button>
+    
+                            <!-- The Modal -->
+                            <div id="myModal" class="modal">
+    
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <!--     <span class="close">&times;</span> -->
+                                    <p>That's okay! What would you like to do?</p>
+                                    <button id="close">Try again!</button>
+                                    <button id="solution">View solution</button>
+                                </div> <!--modal-content-->
+    
+                            </div> <!--id="myModal" class="modal"-->
+                        </div> <!--model-failed-->
+                        <div class="model-solution" id="model-solution">
+                            <h3 id="solution-answer"></h3>
+                            <p id="explenation1"></p>
+                            <p id="explenation2"></p>
+    
+                            <button id="continue">Continue</button>
+    
+                        </div> <!--model-solution-->
+    
+                    </div> <!--class="model" id="models"-->
+                </div> <!--container-->
+    
+            </div> <!--question-->
+           
+        </div> <!--class="card" id="cards"-->
+  </div> <!-- container-of-cards -->
+
+
+    <script src="/index.js"></script>
+</body>
+</html>
