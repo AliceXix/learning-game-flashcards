@@ -48,7 +48,7 @@ body {
 }
 
 
-/* -----------------Answer is wrong popup--------------- */
+/* -----------------"Answer is wrong" popup--------------- */
 
 
 /* The Modal (background) */
@@ -72,7 +72,7 @@ body {
 }
 
 
-/* ----------to make it flip (wronganswer popup)-------------- */
+/* ----------to make "answer is wrong" popup flip -------------- */
 
 .container {
     position: absolute;

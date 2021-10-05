@@ -48,7 +48,7 @@ var remainingFlashCards;
 
 //get all the DOM elements needed for the flipping-cards-logic
 const card = document.getElementById("cards");
-const question = document.getElementsByClassName("question");
+const question = document.getElementById("question");
 const flipcard = document.getElementsByClassName("flipcard");
 const submit = document.getElementById("submit")
 
@@ -64,9 +64,8 @@ const model = document.getElementById("models");
 
 //flip the flashcard around to the question by clicking on it
 card.onclick = function () {
-     card.classList.add("flipCard");
+    card.classList.add("flipCard");
 }
-
 
 //when clicking on submit open failed popup
 submits.onclick = function() {
@@ -81,6 +80,7 @@ close.onclick = function() {
 //flip popup around when clicking 'view solution'
 solution.onclick = function () {
      model.classList.add("flipCard");
+
 }
 
 
@@ -89,16 +89,29 @@ solution.onclick = function () {
 
 //-----------------------CREATE NEW CYCLE-----------------------//
 
+//const modelSolution = document.getElementById("model-solution");
+//const question = document.getElementById("question");
+
+
 
 //the button continue (initiates the new cycle)
 const continueGame = document.getElementById("continue");
 
 continueGame.onclick = function () {
 
-    //delete all text that was in DOM
+    //model.style.display = "none"; 
+    //question.style.display = "none";
+    card.classList.remove("flipCard")
+    //card.style.display = "block";
+   //card.css("all", "unset");
+    //modelSolution.style.display = "none";
+     //modelSolution.classList.add("flipCard");
 
-    //call function to set new text into DOM
+
+
     startGame();
+
+
 }
 
 
@@ -246,17 +259,10 @@ function pushInDom (object) {
 //-----------------------LOGIC TO REMOVE-----------------------//
 
 
-    
-//take a random object (randomObject) from the array flashCards
-//const randomObject = flashCards[Math.floor(Math.random() * flashCards.length)];
-
-
-//TODO: store the currently displayed object
-
-//function to push an object texts into DOM
+//function to remove an object texts into DOM
 function removeFromDom (currentObject) {
 
-    removeTopic(currentObject); //TODO: this throws an error but doesn't break the code --- yet (not a child of the node)
+    removeTopic(currentObject); //
 
    removeBullets(currentObject);
 
@@ -273,33 +279,25 @@ function removeFromDom (currentObject) {
 }
 
 
-//call the function to push text in DOM on the random object of the flashCards array
-//removeFromDom(randomObject)
-
-
 //-----------------------------------------------------------------------//
 
 
 //-----------------------ADDITIONAL-----------------------//
 
-//remove current object from the flashCards array
-//const remainingFlashCards = 
-
+//function to remove the currently displayed object from the array
 function removeObjectFromArray () {
-
-    
+    //TODO: this is wrong! you can use this ONLY with the original arr, but WANT to use it at every game cycle!!
     const remainingFlashCards = flashCards.filter(word => word !== randomObject);
-
     return remainingFlashCards;
 
 }
 
-
-
-//take a random object (randomObject) from the array flashCards
+//take a random object (randomObject) from an array
 function picRandomObject (arr) {
+
     const randomObject = arr[Math.floor(Math.random() * arr.length)];
     return randomObject;
+
 }
 
 
@@ -346,25 +344,6 @@ function startGame () {
 }
 
 startGame();
-
-// function startNewGame () {
-//     //remove all the currently displayed text
-//     removeFromDom(randomObject)
-
-//     //randomly pic a new object from remainingFlashCards array
-//         //this returns an object --> randomObject
-//     picRandomObject(remainingFlashCards);
-
-//     //add text of new object from remaining array
-//     pushInDom(randomObject);
-
-//     //remove currently displayed object from array
-//         //this returns a new array --> remainingFlashCards
-//     removeObjectFromArray();
-
-// }
-
-//startNewGame()
 
 
 //-----------------------------------------------------------------------//
