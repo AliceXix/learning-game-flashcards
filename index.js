@@ -3,30 +3,50 @@ const flashCards = [
 {
     topic: "HTML",
     infos: ["is a programming language", "creates structure", "base of every website"],
-    question: "what is the result of 3 + 6 ? ",
+    question: "What is HTML?",
     questionImg: "helo",
-    possibleAnswers: ["answer one", "answer two", "answer 3", "answer 4"],
-    answer: "this is a solution",
-    explenation: ["reason 1", "reason 2"],
+    possibleAnswers: ["a programming language", "a new way of cooking", "a new video game", "an old way to write"],
+    answer: "HTML is a programming language",
+    explenation: ["-", "-"],
 },
 
 {
     topic: "JavaScript",
     infos: ["is a programming language", "creates logic", "uses camelCase"],
-    question: "what is the result of 3 + 6 ? ",
+    question: "What is the naming convention of JavaScript?",
     questionImg: "helo",
-    possibleAnswers: ["answer one", "answer two", "answer 3", "answer 4"],
-    answer: "this is a solution too",
-    explenation: ["reason 1.0", "reason 2.0"],
+    possibleAnswers: ["be very poetic", "use a lot of numbers", "use CamelCase", "no-one cares"],
+    answer: "JavaScript uses camelCases",
+    explenation: ["-", "-"],
+},
+
+{
+    topic: "CSS",
+    infos: ["is a programming language", "defines the looks", "always looks messy"],
+    question: "How does CSS code looks like?",
+    questionImg: "helo",
+    possibleAnswers: ["mine is pink, what about you?", "clean, sorted and readable", "like spagetthi!", "it always looks messy"],
+    answer: "CSS code always looks messy",
+    explenation: ["-", "-"],
 }
 ]
 
 //-----------------------------------------------------------------------//
-
-
 //-----------------------------------------------------------------------//
 
 
+//-----------------------GLOBAL VARIABLES -----------------------//
+
+
+var randomObject ;
+var remainingFlashCards;
+
+
+//-----------------------LOGIC TO SHOW AND FLIP CARDS-----------------------//
+
+
+
+//get all the DOM elements needed for the flipping-cards-logic
 const card = document.getElementById("cards");
 const question = document.getElementsByClassName("question");
 const flipcard = document.getElementsByClassName("flipcard");
@@ -63,17 +83,23 @@ solution.onclick = function () {
      model.classList.add("flipCard");
 }
 
+
 //-----------------------------------------------------------------------//
 
-//create a new cycle
+
+//-----------------------CREATE NEW CYCLE-----------------------//
+
 
 //the button continue (initiates the new cycle)
 const continueGame = document.getElementById("continue");
 
 continueGame.onclick = function () {
-    //execute here function to set new text into DOM
-}
 
+    //delete all text that was in DOM
+
+    //call function to set new text into DOM
+    startGame();
+}
 
 
 //--------------------------------------------------------------------//
@@ -101,7 +127,8 @@ const explenations = [explenation1, explenation2];
 //-----------------------------------------------------------------------//
 
 
-//Append all the text from the objects to the DOM (html)
+
+//-----------------------ADD ALL THE NODES TO THE DOM-----------------------//
 
 function appendTopic(object) {
     topic.appendChild(document.createTextNode(object.topic));
@@ -141,11 +168,52 @@ function appendExplenations(object) {
 //-----------------------------------------------------------------------//
 
 
-//-----------------------Logic to show each cycle-----------------------//
+//-----------------------REMOVE ALL THE NODES FROM THE DOM-----------------------//
 
-    
-//take a random object (randomObject) from the array flashCards
-const randomObject = flashCards[Math.floor(Math.random() * flashCards.length)];
+
+function removeTopic(object) {
+    console.log("removing topic.....")
+    console.log(topic)
+    // topic.removeChild(document.createTextNode(object.topic));
+    topic.innerHTML = '';
+}
+
+function removeBullets(object) {
+    object.infos.forEach((element, index) => {
+        bullets[index].innerHTML = '';
+        //removeChild(document.createTextNode(element));
+    })
+}
+
+function removeQuestionAsked(object) {
+    questionAsked.innerHTML = '';
+}
+
+function removeQuestionImg(object) {
+    questionImg.innerHTML = '';
+}
+
+function removeAnswers(object) {
+    object.possibleAnswers.forEach((element, index) => {
+        answers[index].innerHTML = '';
+    })
+}
+
+function removeSolutionAnswer(object) {
+    solutionAnswer.innerHTML = '';
+}
+
+function removeExplenations(object) {
+    object.explenation.forEach((element, index) => {
+        explenations[index].innerHTML = '';
+    })
+}
+
+
+//-----------------------------------------------------------------------//
+
+
+//-----------------------LOGIC TO ADD-----------------------//
 
 
 //function to push an object texts into DOM
@@ -169,7 +237,134 @@ function pushInDom (object) {
 
 
 //call the function to push text in DOM on the random object of the flashCards array
-pushInDom(randomObject)
+//pushInDom(randomObject)
+
+
+//-----------------------------------------------------------------------//
+
+
+//-----------------------LOGIC TO REMOVE-----------------------//
+
+
+    
+//take a random object (randomObject) from the array flashCards
+//const randomObject = flashCards[Math.floor(Math.random() * flashCards.length)];
+
+
+//TODO: store the currently displayed object
+
+//function to push an object texts into DOM
+function removeFromDom (currentObject) {
+
+    removeTopic(currentObject); //TODO: this throws an error but doesn't break the code --- yet (not a child of the node)
+
+   removeBullets(currentObject);
+
+    removeQuestionAsked(currentObject);
+
+    removeQuestionImg(currentObject);
+
+    removeAnswers(currentObject);
+
+    removeSolutionAnswer(currentObject);
+
+    removeExplenations(currentObject);
+
+}
+
+
+//call the function to push text in DOM on the random object of the flashCards array
+//removeFromDom(randomObject)
+
+
+//-----------------------------------------------------------------------//
+
+
+//-----------------------ADDITIONAL-----------------------//
+
+//remove current object from the flashCards array
+//const remainingFlashCards = 
+
+function removeObjectFromArray () {
+
+    
+    const remainingFlashCards = flashCards.filter(word => word !== randomObject);
+
+    return remainingFlashCards;
+
+}
+
+
+
+//take a random object (randomObject) from the array flashCards
+function picRandomObject (arr) {
+    const randomObject = arr[Math.floor(Math.random() * arr.length)];
+    return randomObject;
+}
+
+
+//-----------------------------------------------------------------------//
+
+
+//-----------------------START A (NEW) GAME-----------------------//
+
+
+function startGame () {
+
+    if ( topic.innerHTML === '') {//this is the first game
+
+        //pick a random object
+            //this returns an object --> randomObject
+        randomObject = picRandomObject(flashCards);
+
+        //display text of random object
+        pushInDom(randomObject);
+
+        //remove currently displayed object from array
+            //this returns a new array --> remainingFlashCards
+        remainingFlashCards = removeObjectFromArray();
+
+    } else {
+
+        //remove all the currently displayed text
+         removeFromDom(randomObject);
+
+        //randomly pic a new object from remainingFlashCards array
+            //this returns an object --> randomObject
+        randomObject = picRandomObject(remainingFlashCards);
+
+        //add text of new object from remaining array
+        pushInDom(randomObject);
+
+        //remove currently displayed object from array
+            //this returns a new array --> remainingFlashCards
+        remainingFlashCards = removeObjectFromArray();
+
+    }
+
+
+}
+
+startGame();
+
+// function startNewGame () {
+//     //remove all the currently displayed text
+//     removeFromDom(randomObject)
+
+//     //randomly pic a new object from remainingFlashCards array
+//         //this returns an object --> randomObject
+//     picRandomObject(remainingFlashCards);
+
+//     //add text of new object from remaining array
+//     pushInDom(randomObject);
+
+//     //remove currently displayed object from array
+//         //this returns a new array --> remainingFlashCards
+//     removeObjectFromArray();
+
+// }
+
+//startNewGame()
 
 
 //-----------------------------------------------------------------------//
