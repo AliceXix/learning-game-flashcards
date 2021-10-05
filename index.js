@@ -51,6 +51,8 @@ const card = document.getElementById("cards");
 const question = document.getElementById("question");
 const flipcard = document.getElementsByClassName("flipcard");
 const submit = document.getElementById("submit")
+const modelSolution = document.getElementById("model-solution")
+// const modalContent = document.getElementById("modal-content")
 
 const modal = document.getElementById("myModal");             // Get the modal
 
@@ -69,17 +71,23 @@ card.onclick = function () {
 
 //when clicking on submit open failed popup
 submits.onclick = function() {
-  modal.style.display = "block";            // When the user clicks on the button, open the modal
+  modal.style.display = "block";
+  question.style.display = "none";
+          // When the user clicks on the button, open the modal
 }
 
 //remove popup when clicking 'try again'
 close.onclick = function() {
+    question.style.display = "block";
   modal.style.display = "none";         // When the user clicks on <span> (x), close the modal
 }
 
 //flip popup around when clicking 'view solution'
 solution.onclick = function () {
-     model.classList.add("flipCard");
+     modal.classList.add("flipCard");
+     modelSolution.style.display = "block";
+     modelSolution.style.backfaceVisibility = "visible"
+    modal.style.display = "none";
 
 }
 
@@ -99,6 +107,7 @@ const continueGame = document.getElementById("continue");
 
 continueGame.onclick = function () {
 
+      //question.style.display = "none"; 
     //model.style.display = "none"; 
     //question.style.display = "none";
     card.classList.remove("flipCard")
