@@ -6,6 +6,8 @@ const flashCards = [
     question: "what is the result of 3 + 6 ? ",
     questionImg: "helo",
     possibleAnswers: ["answer one", "answer two", "answer 3", "answer 4"],
+    answer: "this is a solution",
+    explenation: ["reason 1", "reason 2"],
 },
 
 {
@@ -14,23 +16,12 @@ const flashCards = [
     question: "what is the result of 3 + 6 ? ",
     questionImg: "helo",
     possibleAnswers: ["answer one", "answer two", "answer 3", "answer 4"],
+    answer: "this is a solution too",
+    explenation: ["reason 1.0", "reason 2.0"],
 }
 ]
 
 //-----------------------------------------------------------------------//
-
-const answerCards = [
-
-{
-    answer: "this is a solution",
-    explenation: ["reason 1", "reason 2"]
-},
-
-{
-    answer: "this is a solution too",
-    explenation: ["reason 1.0", "reason 2.0"]
-}
-]
 
 
 //-----------------------------------------------------------------------//
@@ -150,14 +141,35 @@ function appendExplenations(object) {
 //-----------------------------------------------------------------------//
 
 
-//Logic to show each cycle
+//-----------------------Logic to show each cycle-----------------------//
 
-//TODO: this needs to take one object for one cycle
-flashCards.forEach(element => {
-    appendBullets(element)
-})
+    
+//take a random object (randomObject) from the array flashCards
+const randomObject = flashCards[Math.floor(Math.random() * flashCards.length)];
 
 
+//function to push an object texts into DOM
+function pushInDom (object) {
+
+    appendTopic(object);
+
+    appendBullets(object);
+
+    appendQuestionAsked(object);
+
+    appendQuestionImg(object);
+
+    appendAnswers(object);
+
+    appendSolutionAnswer(object);
+
+    appendExplenations(object);
+
+}
+
+
+//call the function to push text in DOM on the random object of the flashCards array
+pushInDom(randomObject)
 
 
 //-----------------------------------------------------------------------//
