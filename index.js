@@ -13,13 +13,15 @@ import { continueGame } from './main/visuals.js'
 import { pushInDom } from './main/textManipulation.js';
 import { removeFromDom } from './main/textManipulation.js';
 import { domElementsArr } from './main/textManipulation.js'
+//import { picRandomObject } from './main/generalFunctions.js'
+//import { removeObjectFromArray } from './main/generalFunctions.js'
 //import { removeFromDom } from './main/textManipulation.js'
 
 //-----------------------GLOBAL VARIABLES -----------------------//
 
 
-var randomObject ;
-var remainingFlashCards;
+export var randomObject ;
+export var remainingFlashCards;
 
 
 //-----------------------ONCLICK EVENTS-----------------------//
@@ -54,22 +56,26 @@ continueGame.onclick = function () {
 // TODO from Jonathan: Rename flipCard to be more generic (flipElement? flipped?)
 
 
-//-----------------------ADDITIONAL-----------------------//
-
-//function to remove the currently displayed object from the array
+/**
+ * Returns a remaining array of object after removing the currently used one
+ * @param {*} arr 
+ * @returns remainingFlashCards
+ */
 function removeObjectFromArray (arr) {
     const remainingFlashCards = arr.filter(word => word !== randomObject);
     return remainingFlashCards;
 }
 
-//take a random object (randomObject) from an array
+
+/**
+ * Returns a random object out an array.
+ * @param {*} arr 
+ * @returns randomObject
+ */
 function picRandomObject (arr) {
     const randomObject = arr[Math.floor(Math.random() * arr.length)];
     return randomObject;
 }
-
-
-//-----------------------------------------------------------------------//
 
 
 //-----------------------START A (NEW) GAME-----------------------//
@@ -77,37 +83,30 @@ function picRandomObject (arr) {
 
 function startGame () {
 
-    if ( topic.innerHTML === '') {//this is the first game
+    if ( topic.innerHTML === '') {
 
-        //pick a random object
-            //this returns an object --> randomObject
         randomObject = picRandomObject(flashCards);
-        //console.log(randomObject)
 
-        pushInDom(randomObject, domElementsArr)
-        //console.log(domElementsArr)
+        pushInDom(randomObject, domElementsArr);
 
-        //remove currently displayed object from array
-            //this returns a new array --> in this case remainingFlashCards
         remainingFlashCards = removeObjectFromArray(flashCards);
-        console.log(remainingFlashCards)
+
+    } else if (remainingFlashCards.length === 0) {
+
+        
+        console.log('game end')
+
+
 
     } else {
 
-        //remove all the currently displayed text
          removeFromDom(domElementsArr);
 
-        //randomly pic a new object from remainingFlashCards array
-            //this returns an object --> randomObject
         randomObject = picRandomObject(remainingFlashCards);
 
-        //add text of new object from remaining array
-        //pushInDom(randomObject);
-        pushInDom(randomObject, domElementsArr)
+        pushInDom(randomObject, domElementsArr);
 
-        //remove currently displayed object from array
-            //this returns a new array --> remainingFlashCards
-        remainingFlashCards = removeObjectFromArray();
+        remainingFlashCards = removeObjectFromArray(remainingFlashCards);
 
     }
 

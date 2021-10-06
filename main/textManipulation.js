@@ -48,8 +48,6 @@ explenation2,
  * @returns 
  */
 function appendTextToDom(domElement, object) {
-    console.log(domElement)
-    console.log(object)
     domElement.appendChild(document.createTextNode(object[domElement.id]))
 }
 
@@ -62,8 +60,6 @@ function appendTextToDom(domElement, object) {
 export function pushInDom (object, arr) {
 
     arr.forEach ( domElement => {
-        // console.log(object[domElement.id])
-        // console.log(typeof object[domElement.id])
         appendTextToDom(domElement, object);
 });
 
