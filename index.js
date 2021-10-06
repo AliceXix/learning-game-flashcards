@@ -57,19 +57,15 @@ continueGame.onclick = function () {
 //-----------------------ADDITIONAL-----------------------//
 
 //function to remove the currently displayed object from the array
-function removeObjectFromArray () {
-    //TODO: this is wrong! you can use this ONLY with the original arr, but WANT to use it at every game cycle!!
-    const remainingFlashCards = flashCards.filter(word => word !== randomObject);
+function removeObjectFromArray (arr) {
+    const remainingFlashCards = arr.filter(word => word !== randomObject);
     return remainingFlashCards;
-
 }
 
 //take a random object (randomObject) from an array
 function picRandomObject (arr) {
-
     const randomObject = arr[Math.floor(Math.random() * arr.length)];
     return randomObject;
-
 }
 
 
@@ -92,9 +88,9 @@ function startGame () {
         //console.log(domElementsArr)
 
         //remove currently displayed object from array
-            //this returns a new array --> remainingFlashCards
-        remainingFlashCards = removeObjectFromArray();
-        //console.log(remainingFlashCards)
+            //this returns a new array --> in this case remainingFlashCards
+        remainingFlashCards = removeObjectFromArray(flashCards);
+        console.log(remainingFlashCards)
 
     } else {
 
