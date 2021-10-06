@@ -38,6 +38,7 @@ explenation2,
 ]
 
 
+
 //-----------------------LOGIC TO ADD-----------------------//
 
 /**
@@ -47,9 +48,9 @@ explenation2,
  * @returns 
  */
 function appendTextToDom(domElement, object) {
-    //console.log(object)
-    //console.log(domElement.id)
-    return domElement.appendChild(document.createTextNode(object[domElement.id]))
+    console.log(domElement)
+    console.log(object)
+    domElement.appendChild(document.createTextNode(object[domElement.id]))
 }
 
 
@@ -60,12 +61,10 @@ function appendTextToDom(domElement, object) {
  */
 export function pushInDom (object, arr) {
 
-    
-
     arr.forEach ( domElement => {
-        console.log(object[domElement.id])
-        console.log(typeof object[domElement.id])
-    appendTextToDom(domElement, object[domElement.id]);
+        // console.log(object[domElement.id])
+        // console.log(typeof object[domElement.id])
+        appendTextToDom(domElement, object);
 });
 
 }
