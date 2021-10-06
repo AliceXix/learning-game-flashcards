@@ -1,35 +1,11 @@
-const flashCards = [
+// TODO from Jonathan: rename test to a sensible filename, like flashCardData
+import { testArray  } from './test.js';
+import { flashCards } from './test.js';
 
-{
-    topic: "HTML",
-    infos: ["is a programming language", "creates structure", "base of every website"],
-    question: "What is HTML?",
-    questionImg: "helo",
-    possibleAnswers: ["a programming language", "a new way of cooking", "a new video game", "an old way to write"],
-    answer: "HTML is a programming language",
-    explenation: ["-", "-"],
-},
+import * as lib from './test.js'
 
-{
-    topic: "JavaScript",
-    infos: ["is a programming language", "creates logic", "uses camelCase"],
-    question: "What is the naming convention of JavaScript?",
-    questionImg: "helo",
-    possibleAnswers: ["be very poetic", "use a lot of numbers", "use CamelCase", "no-one cares"],
-    answer: "JavaScript uses camelCases",
-    explenation: ["-", "-"],
-},
 
-{
-    topic: "CSS",
-    infos: ["is a programming language", "defines the looks", "always looks messy"],
-    question: "How does CSS code looks like?",
-    questionImg: "helo",
-    possibleAnswers: ["mine is pink, what about you?", "clean, sorted and readable", "like spagetthi!", "it always looks messy"],
-    answer: "CSS code always looks messy",
-    explenation: ["-", "-"],
-}
-]
+
 
 //-----------------------------------------------------------------------//
 //-----------------------------------------------------------------------//
@@ -44,82 +20,94 @@ var remainingFlashCards;
 
 //-----------------------LOGIC TO SHOW AND FLIP CARDS-----------------------//
 
+/**
+ * Gets HTML by the ID - DOM manipulation.
+ * @param {*} id 
+ * @returns An HTML Node
+ */
+function getHtmlById(id) {
+    return document.getElementById(id);
+}
 
 
-//get all the DOM elements needed for the flipping-cards-logic
-const card = document.getElementById("cards");
-const question = document.getElementById("question");
+const card = getHtmlById("cards");
+const question = getHtmlById("question");
+const modelSolution = getHtmlById("model-solution")
+const container = getHtmlById("container")
+const modal = getHtmlById("myModal");             // Get the modal
+const submits = getHtmlById("submit");                 // Get the button that opens the modal
+const close = getHtmlById("close");               // Get the element that closes the modal
+const solution = getHtmlById("solution");
+
+const model = document.getElementById("models");
+const flipcardId = document.getElementById("flipcard")
+const mainContainer = document.getElementById("main-container")
 const flipcard = document.getElementsByClassName("flipcard");
 const submit = document.getElementById("submit")
-const modelSolution = document.getElementById("model-solution")
-// const modalContent = document.getElementById("modal-content")
-
-const modal = document.getElementById("myModal");             // Get the modal
-
-const submits = document.getElementById("submit");                 // Get the button that opens the modal
-
-var close = document.getElementById("close");               // Get the <span> element that closes the modal
-
-const solution = document.getElementById("solution");
-const model = document.getElementById("models");
 
 
 //flip the flashcard around to the question by clicking on it
 card.onclick = function () {
+    console.log('henlo')
     card.classList.add("flipCard");
 }
 
 //when clicking on submit open failed popup
 submits.onclick = function() {
-  modal.style.display = "block";
-  question.style.display = "none";
-          // When the user clicks on the button, open the modal
+    // TODO from Jonathan: put these 2 lines in 1 function that explains what it does
+  openPopUpFailed();
+
 }
+
+
+/**
+ * Opens the popup when the answer is wrong.
+ */
+ function openPopUpFailed () {
+    modal.style.display = "block";
+    question.style.display = "none";
+    container.style.display = "block";
+    container.classList.add("flipCard");
+}
+
 
 //remove popup when clicking 'try again'
 close.onclick = function() {
+    // TODO from Jonathan: put these 2 lines in 1 function that explains what it does
     question.style.display = "block";
   modal.style.display = "none";         // When the user clicks on <span> (x), close the modal
 }
 
 //flip popup around when clicking 'view solution'
 solution.onclick = function () {
+    // TODO from Jonathan: put these 4 lines in 1 function that explains what it does
+    // for example: showSolution
      modal.classList.add("flipCard");
      modelSolution.style.display = "block";
      modelSolution.style.backfaceVisibility = "visible"
-    modal.style.display = "none";
-
+     modal.style.display = "none";
 }
 
+// TODO from Jonathan: Rename flipCard to be more generic (flipElement? flipped?)
 
 //-----------------------------------------------------------------------//
 
 
 //-----------------------CREATE NEW CYCLE-----------------------//
 
-//const modelSolution = document.getElementById("model-solution");
-//const question = document.getElementById("question");
-
-
 
 //the button continue (initiates the new cycle)
 const continueGame = document.getElementById("continue");
 
 continueGame.onclick = function () {
-
-      //question.style.display = "none"; 
-    //model.style.display = "none"; 
-    //question.style.display = "none";
-    card.classList.remove("flipCard")
-    //card.style.display = "block";
-   //card.css("all", "unset");
-    //modelSolution.style.display = "none";
-     //modelSolution.classList.add("flipCard");
-
-
-
+    
+    container.style.display="none";
+    modelSolution.style.display = "none";
+    card.classList.remove("flipCard");
+    question.style.display = "block"
+    modal.classList.remove("flipCard")
+    
     startGame();
-
 
 }
 
@@ -194,16 +182,12 @@ function appendExplenations(object) {
 
 
 function removeTopic(object) {
-    console.log("removing topic.....")
-    console.log(topic)
-    // topic.removeChild(document.createTextNode(object.topic));
     topic.innerHTML = '';
 }
 
 function removeBullets(object) {
     object.infos.forEach((element, index) => {
         bullets[index].innerHTML = '';
-        //removeChild(document.createTextNode(element));
     })
 }
 
@@ -256,10 +240,6 @@ function pushInDom (object) {
     appendExplenations(object);
 
 }
-
-
-//call the function to push text in DOM on the random object of the flashCards array
-//pushInDom(randomObject)
 
 
 //-----------------------------------------------------------------------//
