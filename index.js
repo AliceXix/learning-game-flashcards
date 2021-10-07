@@ -93,7 +93,9 @@ function startGame () {
 
     } else if (remainingFlashCards.length === 0) {
 
-        
+
+        //TODO:here function to remove any card from screan (target id main-container)
+        //
         console.log('game end')
 
 
