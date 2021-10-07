@@ -24,6 +24,7 @@ import { modalContent } from './main/visuals.js'
 import { popupText } from './main/visuals.js'
 import { getHtmlById } from './main/generalFunctions.js';
 import { gameEnd } from './endgame.js';
+import { continueGame5 } from './main/visuals.js'
 
 //import { picRandomObject } from './main/generalFunctions.js'
 //import { removeObjectFromArray } from './main/generalFunctions.js'
@@ -57,10 +58,13 @@ viewSolution.onclick = function () {
 
 continueGame.onclick = function () {
     
+    console.log('helo')
+
     resetToFirstCard()
     startGame();
 
 }
+
 
 // TODO from Jonathan: Rename flipCard to be more generic (flipElement? flipped?)
 
@@ -94,6 +98,9 @@ answersArr.forEach( element => {
     element.onclick = function () {
         if (element.innerText === randomObject.correctAnswer) {
             
+            
+
+            console.log(document.querySelectorAll('#continue'))
             popupText.innerHTML = 'Yes that is correct! Awesome!'
 
             modelSolution.innerHTML = '';
@@ -115,7 +122,9 @@ answersArr.forEach( element => {
 //-----------------------START A (NEW) GAME-----------------------//
 
 
-function startGame () {
+export function startGame () {
+
+    console.log(document.querySelectorAll('#continue'))
 
     if ( topic.innerHTML === '') {
 

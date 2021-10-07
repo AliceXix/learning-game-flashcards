@@ -1,9 +1,12 @@
 import { getHtmlById } from './generalFunctions.js';
+import { startGame } from '../index.js';
+
 
 
 
 
 export const continueGame = getHtmlById("continue");
+export const continueGame5 = getHtmlById("continue5");
 export const firstCard = getHtmlById("cards");
 export const question = getHtmlById("question");
 export const modelSolution = getHtmlById("model-solution")
@@ -26,6 +29,7 @@ export function openPopUpFailed () {
     container.classList.add("flipCard");
 }
 
+
 /**
  * Opens the popup when the answer is right.
  */
@@ -35,6 +39,14 @@ export function openPopUpRight () {
     newItem.innerHTML = 'Continue';
     newItem.setAttribute("id", "continue");
 
+    newItem.onclick = function() {
+
+        resetToFirstCard()
+        startGame();
+        console.log('now')
+    }
+    
+
     viewSolution.parentNode.replaceChild(newItem, viewSolution);
 
     modal.style.display = "block";
@@ -42,6 +54,19 @@ export function openPopUpRight () {
     container.style.display = "block";
     container.classList.add("flipCard");
 
+    console.log(continueGame)
+
+
+//     continueGame.onclick = function () {
+    
+//     console.log('helo')
+
+//     resetToFirstCard()
+//     startGame();
+
+// }
+
+    console.log(document.querySelectorAll('#continue'))
     
 
 }
