@@ -19,7 +19,7 @@ const solutionAnswer = getHtmlById("solutionAnswer")
 const explenation1 = getHtmlById("explenation1")
 const explenation2 = getHtmlById("explenation2")
 
-export const newArr = [answer1, answer2, answer3, answer4];
+export const answersArr = [answer1, answer2, answer3, answer4];
 
 export const domElementsArr = [
 

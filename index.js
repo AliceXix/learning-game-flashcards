@@ -18,7 +18,7 @@ import { answer2} from './main/textManipulation.js'
 import { answer3 } from './main/textManipulation.js'
 import { answer4 } from './main/textManipulation.js'
 import { openPopUpRight } from './main/visuals.js'
-import { newArr } from './main/textManipulation.js'
+import { answersArr } from './main/textManipulation.js'
 import { modelSolution } from './main/visuals.js'
 import { modalContent } from './main/visuals.js'
 import { popupText } from './main/visuals.js'
@@ -34,6 +34,7 @@ import { gameEnd } from './endgame.js';
 
 export var randomObject ;
 export var remainingFlashCards;
+export var points = 0;
 
 
 //-----------------------ONCLICK EVENTS-----------------------//
@@ -89,7 +90,7 @@ function picRandomObject (arr) {
 //-----------------------WIN-LOOSE-LOGIC-----------------------//
 
 
-newArr.forEach( element => {
+answersArr.forEach( element => {
     element.onclick = function () {
         if (element.innerText === randomObject.correctAnswer) {
             
@@ -105,6 +106,8 @@ newArr.forEach( element => {
 
         } else {
                 openPopUpFailed();
+
+                points - 1;
         }
 }})
 
@@ -126,16 +129,12 @@ function startGame () {
 
 
         //TODO:here function to remove any card from screen (target id main-container)
-        //TODO: create popup with dom-manipulation to say the game is over
+            //not sure if still needed need to test when continue button fixed
 
 
         gameEnd();
 
-
-
         console.log('game end')
-
-
 
     } else {
 
@@ -156,14 +155,6 @@ startGame();
 
 
 //-----------------------------------------------------------------------//
-
-
-
-
-//-----------------------POINT COUNTER-----------------------//
-
-
-let points = 0;
 
 
 
