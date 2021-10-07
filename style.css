@@ -1,5 +1,5 @@
 body {
-    background-image: url(/Pictures/background.jpeg);
+    background-image: url(background.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     /* background-color: aliceblue; */
@@ -33,7 +33,7 @@ body {
     height: 100%;
     backface-visibility: hidden;
     background: #b58d61;
-    
+
     color: #000;
     text-align: center;
 }
