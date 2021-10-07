@@ -13,6 +13,18 @@ import { continueGame } from './main/visuals.js'
 import { pushInDom } from './main/textManipulation.js';
 import { removeFromDom } from './main/textManipulation.js';
 import { domElementsArr } from './main/textManipulation.js'
+import { answer1 } from './main/textManipulation.js'
+import { answer2} from './main/textManipulation.js'
+import { answer3 } from './main/textManipulation.js'
+import { answer4 } from './main/textManipulation.js'
+import { openPopUpRight } from './main/visuals.js'
+import { newArr } from './main/textManipulation.js'
+import { modelSolution } from './main/visuals.js'
+import { modalContent } from './main/visuals.js'
+import { popupText } from './main/visuals.js'
+import { getHtmlById } from './main/generalFunctions.js';
+import { gameEnd } from './endgame.js';
+
 //import { picRandomObject } from './main/generalFunctions.js'
 //import { removeObjectFromArray } from './main/generalFunctions.js'
 //import { removeFromDom } from './main/textManipulation.js'
@@ -32,10 +44,6 @@ export var remainingFlashCards;
  */
 firstCard.onclick = function () {
     firstCard.classList.add("flipCard");
-}
-
-submits.onclick = function() {
-  openPopUpFailed();
 }
 
 tryAgain.onclick = function() {
@@ -78,6 +86,29 @@ function picRandomObject (arr) {
 }
 
 
+//-----------------------WIN-LOOSE-LOGIC-----------------------//
+
+
+newArr.forEach( element => {
+    element.onclick = function () {
+        if (element.innerText === randomObject.correctAnswer) {
+            
+            popupText.innerHTML = 'Yes that is correct! Awesome!'
+
+            modelSolution.innerHTML = '';
+
+            modalContent.removeChild(tryAgain);
+
+            openPopUpRight();
+            
+            points + 1;
+
+        } else {
+                openPopUpFailed();
+        }
+}})
+
+
 //-----------------------START A (NEW) GAME-----------------------//
 
 
@@ -94,8 +125,14 @@ function startGame () {
     } else if (remainingFlashCards.length === 0) {
 
 
-        //TODO:here function to remove any card from screan (target id main-container)
-        //
+        //TODO:here function to remove any card from screen (target id main-container)
+        //TODO: create popup with dom-manipulation to say the game is over
+
+
+        gameEnd();
+
+
+
         console.log('game end')
 
 
@@ -119,6 +156,16 @@ startGame();
 
 
 //-----------------------------------------------------------------------//
+
+
+
+
+//-----------------------POINT COUNTER-----------------------//
+
+
+let points = 0;
+
+
 
 
 //-----------------------HOW TO's-----------------------//

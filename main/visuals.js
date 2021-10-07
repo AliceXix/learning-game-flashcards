@@ -6,12 +6,14 @@ import { getHtmlById } from './generalFunctions.js';
 export const continueGame = getHtmlById("continue");
 export const firstCard = getHtmlById("cards");
 export const question = getHtmlById("question");
-const modelSolution = getHtmlById("model-solution")
+export const modelSolution = getHtmlById("model-solution")
 const container = getHtmlById("container")
 const modal = getHtmlById("myModal");             // Get the modal
 export const submits = getHtmlById("submit");                 // Get the button that opens the modal
 export const tryAgain = getHtmlById("try-again");               // Get the element that closes the modal
 export const viewSolution = getHtmlById("solution");
+export const modalContent = getHtmlById("modal-content");
+export const popupText = getHtmlById("popup-text");
 
 
 /**
@@ -22,6 +24,26 @@ export function openPopUpFailed () {
     question.style.display = "none";
     container.style.display = "block";
     container.classList.add("flipCard");
+}
+
+/**
+ * Opens the popup when the answer is right.
+ */
+export function openPopUpRight () {
+
+    const newItem = document.createElement('button');
+    newItem.innerHTML = 'Continue';
+    newItem.setAttribute("id", "continue");
+
+    viewSolution.parentNode.replaceChild(newItem, viewSolution);
+
+    modal.style.display = "block";
+    question.style.display = "none";
+    container.style.display = "block";
+    container.classList.add("flipCard");
+
+    
+
 }
 
 

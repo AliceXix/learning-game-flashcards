@@ -11,13 +11,15 @@ const bullet2 = getHtmlById("bullet2")
 const bullet3 = getHtmlById("bullet3")
 const questionAsked = getHtmlById("questionAsked")
 const questionImg = getHtmlById("questionImg")
-const answer1 = getHtmlById("answer1")
-const answer2 = getHtmlById("answer2")
-const answer3 = getHtmlById("answer3")
-const answer4 = getHtmlById("answer4")
+export const answer1 = getHtmlById("answer1")
+export const answer2 = getHtmlById("answer2")
+export const answer3 = getHtmlById("answer3")
+export const answer4 = getHtmlById("answer4")
 const solutionAnswer = getHtmlById("solutionAnswer")
 const explenation1 = getHtmlById("explenation1")
 const explenation2 = getHtmlById("explenation2")
+
+export const newArr = [answer1, answer2, answer3, answer4];
 
 export const domElementsArr = [
 

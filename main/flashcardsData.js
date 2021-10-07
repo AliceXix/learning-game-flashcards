@@ -13,6 +13,7 @@ export const flashCards = [
     solutionAnswer: "HTML is a programming language",
     explenation1: "-",
     explenation2: "-",
+    correctAnswer: "a programming language",
 },
 
 {
@@ -29,6 +30,7 @@ export const flashCards = [
     solutionAnswer: "JavaScript uses camelCases",
     explenation1: "-",
     explenation2: "-",
+    correctAnswer: "use CamelCase",
 },
 
 {
@@ -45,5 +47,6 @@ export const flashCards = [
     solutionAnswer: "CSS code always looks messy",
     explenation1: "-",
     explenation2: "-",
+    correctAnswer: "it always looks messy",
 }
 ]
