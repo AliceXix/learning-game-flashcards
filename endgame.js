@@ -19,12 +19,12 @@ export function gameEnd () {
     flipcard.innerHTML = `
     <h1>Congratulation!</h1>
     <br>
-    <p>You made it through all the questions! You total score is:</p>
-    <p id="points"></p>
+    <p>You made it through all the questions!</p>
+    <p>Grades or points don't matter to us, so just go have a donut and enjoy yourself.</p>
     <br>
     <button id="endAll">Clean the desk!</button> <button id="restart">Play again!</button>
     `
-    document.getElementById('points').innerHTML = pointCounter
+    // document.getElementById('points').innerHTML = pointCounter
     const endAll = document.getElementById('endAll')
     const restartAll = document.getElementById('restart');
 
