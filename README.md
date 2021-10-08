@@ -22,5 +22,5 @@ Navigate through the game with the intuitive buttons.
 
 - chose between multiple main themes
 - have a main lesson to read
-- set a timer for the Flipcards to hide by themselves
+- more cool sound effects
 - implement multiple questions per sub-topic
