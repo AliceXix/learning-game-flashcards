@@ -1,69 +1,55 @@
-
-// import { testArray  } from './test.js';
 import { flashCards } from './main/flashcardsData.js';
 import { openPopUpFailed } from './main/visuals.js';
 import { firstCard } from './main/visuals.js'
-import { submits } from './main/visuals.js'
-import { tryAgain } from './main/visuals.js'
-import { viewSolution } from './main/visuals.js'
 import { removePopUp } from './main/visuals.js'
 import { showSolution } from './main/visuals.js'
 import { resetToFirstCard } from './main/visuals.js'
-import { continueGame } from './main/visuals.js'
 import { pushInDom } from './main/textManipulation.js';
 import { removeFromDom } from './main/textManipulation.js';
 import { domElementsArr } from './main/textManipulation.js'
-import { answer1 } from './main/textManipulation.js'
-import { answer2} from './main/textManipulation.js'
-import { answer3 } from './main/textManipulation.js'
-import { answer4 } from './main/textManipulation.js'
 import { openPopUpRight } from './main/visuals.js'
 import { answersArr } from './main/textManipulation.js'
-import { modelSolution } from './main/visuals.js'
 import { modalContent } from './main/visuals.js'
-import { popupText } from './main/visuals.js'
 import { getHtmlById } from './main/generalFunctions.js';
 import { gameEnd } from './endgame.js';
-import { continueGame5 } from './main/visuals.js'
 
-//import { picRandomObject } from './main/generalFunctions.js'
-//import { removeObjectFromArray } from './main/generalFunctions.js'
-//import { removeFromDom } from './main/textManipulation.js'
+//const models = getHtmlById('models');
+
 
 //-----------------------GLOBAL VARIABLES -----------------------//
 
 
 export var randomObject ;
 export var remainingFlashCards;
-export var points = 0;
+export var pointCounter = 0;
+
+var audio = new Audio('/background-music.mp3');
+audio.play();
 
 
 //-----------------------ONCLICK EVENTS-----------------------//
 
 
-/**
- * shows question card by flipping flashcard
- */
 firstCard.onclick = function () {
     firstCard.classList.add("flipCard");
 }
 
-tryAgain.onclick = function() {
-    removePopUp()
-}
+// Live Event Handlers
+document.addEventListener("click", function(event){
+    if(event.target.id === "try-again"){
+        console.log('you want to try again')
+        removePopUp();
+       
+    } else if (event.target.id === "solution") {
+        console.log('you want to see the solution')
+        showSolution();
+    } else if (event.target.id === "continue") {
+        console.log('you want to continue')
+        resetToFirstCard()
+        startGame();
+    }
+});
 
-viewSolution.onclick = function () {
-     showSolution()
-}
-
-continueGame.onclick = function () {
-    
-    console.log('helo')
-
-    resetToFirstCard()
-    startGame();
-
-}
 
 
 // TODO from Jonathan: Rename flipCard to be more generic (flipElement? flipped?)
@@ -92,31 +78,86 @@ function picRandomObject (arr) {
 
 
 //-----------------------WIN-LOOSE-LOGIC-----------------------//
+const models = getHtmlById('models');
+
+/**
+ * Deletes content of the original popup and fills with content for the popup when answer is right.
+ */
+function createPopUpRight () {
+    modalContent.innerHTML = `
+        <p id="popup-text">Yes that is correct! Awesome!</p>
+        <button id="continue">Continue</button>
+    `;
+
+    modalContent.classList.add('flipCard-centered')
+    modalContent.classList.add('flipCard')
+}
+
+
+/**
+ * Deletes content of the original popup and fills with content for the popup when answer is right.
+ */
+function createPopUpWrong () {
+    
+    modalContent.innerHTML = `
+            <p id="popup-text">OOOps!</p>
+            <button id="try-again">tryagian</button>
+            <button id="solution">solution show</button>
+        `;
+
+}
+
+//------------------------------------------------------//
+
+/**
+ * Sets a timer on the first card and the questions
+ */
+function difficultie () {
+        setTimeout(function () { firstCard.classList.add("flipCard"); }, 2000);
+
+        setTimeout(function () {
+            createPopUpWrong();
+            openPopUpFailed();
+
+            pointCounter -= 1;
+
+            console.log('when wrong' + pointCounter)
+        }, 6000)
+    }
+
+
+
+
+
+//-----------------------------------------------------//
+
+
+
 
 
 answersArr.forEach( element => {
     element.onclick = function () {
         if (element.innerText === randomObject.correctAnswer) {
             
-            
-
-            console.log(document.querySelectorAll('#continue'))
-            popupText.innerHTML = 'Yes that is correct! Awesome!'
-
-            modelSolution.innerHTML = '';
-
-            modalContent.removeChild(tryAgain);
-
+            createPopUpRight();
             openPopUpRight();
-            
-            points + 1;
+
+            pointCounter += 1;
+
+            console.log('when right' + pointCounter)
 
         } else {
-                openPopUpFailed();
+                
+            createPopUpWrong();
+            openPopUpFailed();
 
-                points - 1;
+            pointCounter -= 1;
+
+            console.log('when wrong' + pointCounter)
+
         }
 }})
+
 
 
 //-----------------------START A (NEW) GAME-----------------------//
@@ -137,13 +178,22 @@ export function startGame () {
     } else if (remainingFlashCards.length === 0) {
 
 
-        //TODO:here function to remove any card from screen (target id main-container)
-            //not sure if still needed need to test when continue button fixed
-
-
         gameEnd();
 
         console.log('game end')
+
+    } else if (remainingFlashCards.length === 2) {
+
+        difficultie();
+
+        removeFromDom(domElementsArr);
+
+        randomObject = picRandomObject(remainingFlashCards);
+
+        pushInDom(randomObject, domElementsArr);
+
+        remainingFlashCards = removeObjectFromArray(remainingFlashCards);
+
 
     } else {
 
@@ -161,18 +211,3 @@ export function startGame () {
 }
 
 startGame();
-
-
-//-----------------------------------------------------------------------//
-
-
-
-
-//-----------------------HOW TO's-----------------------//
-
-// //how to get and set text into html
-
-// //var node = document.createElement("div");                 // Create a <div> node
-// var textnode = document.createTextNode("the text I want");         // Create a text node
-// topic.appendChild(textnode);                              // Append the text to <li>
-// //document.getElementById("myList").appendChild(node);     // Append <li> to <ul> with id="myList"

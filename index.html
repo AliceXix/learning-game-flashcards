@@ -5,35 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth@78.6&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./style.css"/>
 
 </head>
 <body>
 
+    <embed class="sounds" id="background-music" src="https://www.youtube.com/watch?v=TURbeWK2wwg" loop="true" preload="auto">
+<!--TODO-->
 
     <div class="container-of-cards" id="main-container"> <!--No you don't want to put the listener here, you want it smaller, not bigger-->
     
         <div class="card" id="cards">
     
             <div class="flipcard" id="flipcard">
-                <h2 id="topic"></h2>
+                <h2 class="heading" id="topic"></h2>
                
                 <ul>
                     <li id="bullet1"></li>
                     <li id="bullet2"></li>
                     <li id="bullet3"></li>
                 </ul>
+
+
             </div> <!--flipcard-->
     
             <div class="question" id="question">
-                <h3 id="questionAsked"></h3>
+                <h3 class="heading2" id="questionAsked"></h3>
     
                 <img id="questionImg" src="">
     
+                <div class="wraper">
                 <button class="answerbtn" id="answer1"></button>
                 <button class="answerbtn" id="answer2"></button>
                 <button class="answerbtn" id="answer3"></button>
                 <button class="answerbtn" id="answer4"></button>
+                </div>
 
         </div><!--class="card" id="cards"--> <!--THIS USED TO BE CLOSING JUST BEFORE CONTAINER OF CARDS BEFORE EVRYTHING BROKE-->
     
@@ -53,10 +68,6 @@
                             
                                             <!-- Modal content -->
                                             <div class="modal-content" id="modal-content">
-                                                <!--     <span class="close">&times;</span> -->
-                                                <p id="popup-text">That's okay! What would you like to do?</p>
-                                                <button id="try-again">Try again!</button>
-                                                <button id="solution">View solution</button>
                                             </div>
                                             <!--modal-content-->
                             
@@ -65,7 +76,8 @@
                                     </div>
                                     <!--model-failed-->
                                     <div class="model-solution" id="model-solution">
-                                        <h3 id="solutionAnswer"></h3>
+                                        <h3 class="heading2">The solution was..</h3>
+                                        <h5 class="heading3" id="solutionAnswer"></h5>
                                         <p id="explenation1"></p>
                                         <p id="explenation2"></p>
                             

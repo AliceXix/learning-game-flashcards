@@ -1,21 +1,46 @@
 import { getHtmlById } from "./main/generalFunctions.js";
-import { points } from "./index.js";
-
+import { pointCounter, startGame } from "./index.js";
+import { question } from "./main/visuals.js";
+import { firstCard } from "./main/visuals.js";
 
 
 const flipcard = getHtmlById('flipcard');
-
 
 /**
  * Replaces the first card of the game with a"endgame- message".
  */
 export function gameEnd () {
+    firstCard.classList.remove("flipCard")
 
-    const endCard = document.createElement('div');
-    const endMsg = document.createTextNode('Congratulation! You made it through all the questions! You total score is:' + points);
+    question.style.display = 'none';
 
-    endCard.appendChild(endMsg);
-    flipcard.replaceChild(flipcard, endCard);
+    flipcard.innerHTML = ''
 
+    flipcard.innerHTML = `
+    <h1>Congratulation!</h1>
+    <br>
+    <p>You made it through all the questions! You total score is:</p>
+    <p id="points"></p>
+    <br>
+    <button id="endAll">Clean the desk!</button> <button id="restart">Play again!</button>
+    `
+    document.getElementById('points').innerHTML = pointCounter
+    const endAll = document.getElementById('endAll')
+    const restartAll = document.getElementById('restart');
+
+
+   endAll.onclick = function () {
+       startGame() === false
+   }
+
+    restartAll.onclick = function () {
+        window.location.reload(false);
+    }
+    
+
+    question.style.display = 'none';
+
+    firstCard.classList.remove("flipCard")
 
 }
+
