@@ -46,7 +46,7 @@ export function openPopUpRight () {
 export function removePopUp () {
     console.log('the pop-up just has been removed')
     question.style.display = "block";
-    modal.style.display = "none";  
+    container.style.display = "none";
 }
 
 
