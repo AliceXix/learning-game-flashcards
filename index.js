@@ -104,9 +104,9 @@ function createPopUpRight () {
 function createPopUpWrong () {
     
     modalContent.innerHTML = `
-            <p id="popup-text">OOOps!</p>
-            <button id="try-again">tryagian</button>
-            <button id="solution">solution show</button>
+            <p id="popup-text">That didn't went as planned. That's okay! What would you like to do next?</p>
+            <button id="try-again">Try again!</button>
+            <button id="solution">Show solution</button>
         `;
 
 }

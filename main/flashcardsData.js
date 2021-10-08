@@ -1,19 +1,19 @@
 export const flashCards = [
 {
     topic: "HTML",
-    bullet1: "is a programming language",
+    bullet1: "Stands for Hypertext Markup Language",
     bullet2: "creates structure",
     bullet3: "base of every website",
-    questionAsked: "What is HTML?",
+    questionAsked: "What does HTML stands for?",
     questionImg: "helo",
-    answer1: "A programming language",
+    answer1: "Hypertext Markup Language",
     answer2: "A new way of cooking",
     answer3: "A new video game",
     answer4: "An old way to write",
-    solutionAnswer: "HTML is a programming language",
+    solutionAnswer: "HTML stands for Hypertext Markup Language",
     explenation1: "-",
     explenation2: "-",
-    correctAnswer: "A programming language",
+    correctAnswer: "Hypertext Markup Language",
 },
 
 {
