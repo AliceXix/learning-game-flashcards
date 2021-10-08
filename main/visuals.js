@@ -1,5 +1,6 @@
 import { getHtmlById } from './generalFunctions.js';
-import { startGame } from '../index.js';
+import { popSound } from '../index.js';
+import { flipSound } from '../index.js';
 
 
 
@@ -27,6 +28,7 @@ export function openPopUpFailed () {
     question.style.display = "none";
     container.style.display = "block";
     container.classList.add("flipCard");
+    popSound.play();
 }
 
 export var newItem;
@@ -40,6 +42,7 @@ export function openPopUpRight () {
     question.style.display = "none";
     container.style.display = "block";
     container.classList.add("flipCard");
+    popSound.play();
 
 }
 
@@ -55,6 +58,7 @@ export function showSolution () {
     modelSolution.style.display = "block";
     modelSolution.style.backfaceVisibility = "visible"
     modal.style.display = "none";
+    //flipSound.play()
 }
 
 
@@ -64,4 +68,5 @@ export function resetToFirstCard () {
     firstCard.classList.remove("flipCard");
     question.style.display = "block"
     modal.classList.remove("flipCard")
+    //flipSound.play();
 }

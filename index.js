@@ -24,7 +24,10 @@ export var remainingFlashCards;
 export var pointCounter = 0;
 
 var audio = new Audio('./background-music.mp3');
-audio.play();
+//audio.play();
+
+export var flipSound = new Audio ('./flip-sound.mp3');
+export var popSound = new Audio ('./pop.mp3');
 
 
 //-----------------------ONCLICK EVENTS-----------------------//
@@ -32,6 +35,7 @@ audio.play();
 
 firstCard.onclick = function () {
     firstCard.classList.add("flipCard");
+    //flipSound.play();
 }
 
 // Live Event Handlers
@@ -118,6 +122,7 @@ function difficultie () {
         setTimeout(function () {
             createPopUpWrong();
             openPopUpFailed();
+            
 
             pointCounter -= 1;
 
