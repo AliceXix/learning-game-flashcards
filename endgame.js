@@ -31,6 +31,7 @@ export function gameEnd () {
 
    endAll.onclick = function () {
        startGame() === false
+       window.open('', '_self').close()
    }
 
     restartAll.onclick = function () {
