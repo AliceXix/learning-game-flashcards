@@ -117,6 +117,10 @@ function createPopUpWrong () {
  * Sets a timer on the first card and the questions
  */
 function difficultie () {
+
+    alert(`Your time to read the flashcards and answer questions is now limited!
+    Be quick little learner.`);
+
         setTimeout(function () { firstCard.classList.add("flipCard"); }, 2000);
 
         setTimeout(function () {
