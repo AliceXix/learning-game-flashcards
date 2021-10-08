@@ -23,7 +23,7 @@ export var randomObject ;
 export var remainingFlashCards;
 export var pointCounter = 0;
 
-var audio = new Audio('/background-music.mp3');
+var audio = new Audio('https://www.youtube.com/watch?v=TURbeWK2wwg');
 audio.play();
 
 
