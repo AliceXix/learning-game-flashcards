@@ -1,17 +1,13 @@
 import { getHtmlById } from './generalFunctions.js';
 import { popSound } from '../index.js';
-import { flipSound } from '../index.js';
-
-
-
 
 
 export const continueGame = getHtmlById("continue");
 export const continueGame5 = getHtmlById("continue5");
-export const firstCard = getHtmlById("cards");
-export const question = getHtmlById("question");
+export const firstCard = getHtmlById("card-container");
+export const cardBack = getHtmlById("card-back");
 export const modelSolution = getHtmlById("model-solution")
-const container = getHtmlById("container")
+const popupContainer = getHtmlById("popup-container")
 const modal = getHtmlById("myModal");
 export const submits = getHtmlById("submit");
 export const tryAgain = getHtmlById("try-again");
@@ -25,9 +21,9 @@ export const popupText = getHtmlById("popup-text");
  */
 export function openPopUpFailed () {
     modal.style.display = "block";
-    question.style.display = "none";
-    container.style.display = "block";
-    container.classList.add("flipCard");
+    cardBack.style.display = "none";
+    popupContainer.style.display = "block";
+    popupContainer.classList.add("flipCard");
     popSound.play();
 }
 
@@ -39,17 +35,17 @@ export var newItem;
 export function openPopUpRight () {
 
     modal.style.display = "block";
-    question.style.display = "none";
-    container.style.display = "block";
-    container.classList.add("flipCard");
+    cardBack.style.display = "none";
+    popupContainer.style.display = "block";
+    popupContainer.classList.add("flipCard");
     popSound.play();
 
 }
 
 export function removePopUp () {
     console.log('the pop-up just has been removed')
-    question.style.display = "block";
-    container.style.display = "none";
+    cardBack.style.display = "block";
+    popupContainer.style.display = "none";
 }
 
 
@@ -58,15 +54,13 @@ export function showSolution () {
     modelSolution.style.display = "block";
     modelSolution.style.backfaceVisibility = "visible"
     modal.style.display = "none";
-    //flipSound.play()
 }
 
 
 export function resetToFirstCard () {
-    container.style.display="none";
+    popupContainer.style.display="none";
     modelSolution.style.display = "none";
     firstCard.classList.remove("flipCard");
-    question.style.display = "block"
+    cardBack.style.display = "block"
     modal.classList.remove("flipCard")
-    //flipSound.play();
 }

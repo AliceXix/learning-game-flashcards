@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fliperz</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,82 +19,54 @@
 </head>
 <body>
 
-    <!-- <embed class="sounds" id="background-music" src="https://www.youtube.com/watch?v=TURbeWK2wwg" loop="true" preload="auto"> -->
-<!--TODO-->
-
-    <div class="container-of-cards" id="main-container"> <!--No you don't want to put the listener here, you want it smaller, not bigger-->
+    <div class="main-container" id="main-container">
     
-        <div class="card" id="cards">
-    
-            <div class="flipcard" id="flipcard">
+        <div class="card-container" id="card-container">
+            <div class="card-front" id="card-front">
                 <h2 class="heading" id="topic"></h2>
-               
                 <ul>
                     <li id="bullet1"></li>
                     <li id="bullet2"></li>
                     <li id="bullet3"></li>
                 </ul>
-
-
-            </div> <!--flipcard-->
+            </div> 
     
-            <div class="question" id="question">
+            <div class="card-back" id="card-back">
                 <h3 class="heading2" id="questionAsked"></h3>
-    
                 <img id="questionImg" src="">
-    
-                <div class="wraper">
-                <button class="answerbtn" id="answer1"></button>
-                <button class="answerbtn" id="answer2"></button>
-                <button class="answerbtn" id="answer3"></button>
-                <button class="answerbtn" id="answer4"></button>
+
+                <div class="btn-wraper">
+                    <button class="answerbtn" id="answer1"></button>
+                    <button class="answerbtn" id="answer2"></button>
+                    <button class="answerbtn" id="answer3"></button>
+                    <button class="answerbtn" id="answer4"></button>
+                </div>
+            </div>
+        </div> 
+
+        <div class="popup-container" id="popup-container">
+            <div class="model" id="models"> <!--TODO: change names to meaningfull names, caution respect own convention-->
+        
+                <div class="model-failed">
+                    <div id="myModal" class="modal">
+                        <div class="modal-content" id="modal-content">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="model-solution" id="model-solution">
+                    <h3 class="heading2">The solution was..</h3>
+                    <h5 class="heading3" id="solutionAnswer"></h5>
+                    <p id="explenation1"></p>
+                    <p id="explenation2"></p>
+        
+                    <button id="continue">Continue</button>
                 </div>
 
-        </div><!--class="card" id="cards"--> <!--THIS USED TO BE CLOSING JUST BEFORE CONTAINER OF CARDS BEFORE EVRYTHING BROKE-->
-    
-            </div> <!--question-->
+            </div>
+        </div>
 
-                            <div class="container" id="container">
-                                <div class="model" id="models">
-                            
-                                    <div class="model-failed">
-                            
-                            
-                                        <!-- Trigger/Open The Modal -->
-                                        
-                            
-                                        <!-- The Modal -->
-                                        <div id="myModal" class="modal">
-                            
-                                            <!-- Modal content -->
-                                            <div class="modal-content" id="modal-content">
-                                            </div>
-                                            <!--modal-content-->
-                            
-                                        </div>
-                                        <!--id="myModal" class="modal"-->
-                                    </div>
-                                    <!--model-failed-->
-                                    <div class="model-solution" id="model-solution">
-                                        <h3 class="heading2">The solution was..</h3>
-                                        <h5 class="heading3" id="solutionAnswer"></h5>
-                                        <p id="explenation1"></p>
-                                        <p id="explenation2"></p>
-                            
-                                        <button id="continue">Continue</button>
-                            
-                                    </div>
-                                    <!--model-solution-->
-                            
-                                </div>
-                                <!--class="model" id="models"-->
-                            </div>
-                            <!--container-->
-
-
-           
-        
-    </div> <!-- container-of-cards -->
+    </div>
 
 
     <script type="module"  src="./index.js"></script>

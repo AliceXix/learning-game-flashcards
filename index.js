@@ -13,7 +13,6 @@ import { modalContent } from './main/visuals.js'
 import { getHtmlById } from './main/generalFunctions.js';
 import { gameEnd } from './endgame.js';
 
-//const models = getHtmlById('models');
 
 
 //-----------------------GLOBAL VARIABLES -----------------------//
@@ -24,7 +23,7 @@ export var remainingFlashCards;
 export var pointCounter = 0;
 
 var audio = new Audio('./background-music.mp3');
-//audio.play();
+
 
 export var flipSound = new Audio ('./flip-sound.mp3');
 export var popSound = new Audio ('./pop.mp3');
@@ -35,7 +34,7 @@ export var popSound = new Audio ('./pop.mp3');
 
 firstCard.onclick = function () {
     firstCard.classList.add("flipCard");
-    //flipSound.play();
+    
 }
 
 // Live Event Handlers
@@ -53,10 +52,6 @@ document.addEventListener("click", function(event){
         startGame();
     }
 });
-
-
-
-// TODO from Jonathan: Rename flipCard to be more generic (flipElement? flipped?)
 
 
 /**

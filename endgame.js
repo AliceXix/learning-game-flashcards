@@ -1,10 +1,10 @@
 import { getHtmlById } from "./main/generalFunctions.js";
 import { pointCounter, startGame } from "./index.js";
-import { question } from "./main/visuals.js";
+import { cardBack } from "./main/visuals.js";
 import { firstCard } from "./main/visuals.js";
 
 
-const flipcard = getHtmlById('flipcard');
+const cardFront = getHtmlById('card-front');
 
 /**
  * Replaces the first card of the game with a"endgame- message".
@@ -12,11 +12,11 @@ const flipcard = getHtmlById('flipcard');
 export function gameEnd () {
     firstCard.classList.remove("flipCard")
 
-    question.style.display = 'none';
+    cardBack.style.display = 'none';
 
-    flipcard.innerHTML = ''
+    cardFront.innerHTML = ''
 
-    flipcard.innerHTML = `
+    cardFront.innerHTML = `
     <h1>Congratulation!</h1>
     <br>
     <p>You made it through all the questions!</p>
@@ -39,7 +39,7 @@ export function gameEnd () {
     }
     
 
-    question.style.display = 'none';
+    cardBack.style.display = 'none';
 
     firstCard.classList.remove("flipCard")
 
